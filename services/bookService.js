@@ -24,6 +24,20 @@ const createBook = async (bookData, userId) => {
   };
 };
 
+const getAllBooks = async (userId) => {
+  const books = await Book.find({ user: userId })
+    .sort({ createdAt: -1 })
+    .select("-__v")
+    .lean();
+
+  return {
+    success: true,
+    totalBooks: books.length,
+    books,
+  };
+};
+
 module.exports = {
   createBook,
+  getAllBooks,
 };
