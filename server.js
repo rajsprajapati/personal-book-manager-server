@@ -8,6 +8,8 @@ const authmiddleware = require("./middleware/authMiddleware");
 // Import routes
 const authRoutes = require("./routes/authRoutes");
 
+const bookRoutes = require("./routes/bookRoutes");
+
 dotenv.config();
 
 const app = express();
@@ -31,6 +33,8 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/books", bookRoutes);
 
 const startServer = async () => {
   try {

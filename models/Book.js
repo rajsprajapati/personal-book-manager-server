@@ -14,17 +14,16 @@ const bookSchema = new mongoose.Schema(
       trim: true,
     },
 
-    tags: [
-      {
-        type: String,
-        trim: true,
-      },
-    ],
-
     status: {
       type: String,
       enum: ["Want to Read", "Reading", "Completed"],
       default: "Want to Read",
+    },
+
+    notes: {
+      type: String,
+      trim: true,
+      default: "",
     },
 
     user: {
