@@ -3,6 +3,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const connectDB = require("./config/db");
+const authmiddleware = require("./middleware/authMiddleware");
+
+// Import routes
+const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
 
@@ -25,6 +29,8 @@ app.get("/health", (req, res) => {
     database: dbStatus,
   });
 });
+
+app.use("/api/auth", authRoutes);
 
 const startServer = async () => {
   try {
