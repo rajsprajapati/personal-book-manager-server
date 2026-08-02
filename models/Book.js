@@ -1,0 +1,41 @@
+const mongoose = require("mongoose");
+
+const bookSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Book title is required"],
+      trim: true,
+    },
+
+    author: {
+      type: String,
+      required: [true, "Author name is required"],
+      trim: true,
+    },
+
+    tags: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    status: {
+      type: String,
+      enum: ["Want to Read", "Reading", "Completed"],
+      default: "Want to Read",
+    },
+
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model("Book", bookSchema);
